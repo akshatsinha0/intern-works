@@ -14,21 +14,21 @@ const authRoutes = require('./routes/auth');
 
 const app = express();
 
-// Connect to database
+
 connectDB();
 
-// Security middleware
+
 app.use(helmet());
 
-// Rate limiting
+
 const limiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutes
+  windowMs: 15 * 60 * 1000, 
   max: 100,
   message: 'Too many requests from this IP, please try again later.'
 });
 app.use('/api/', limiter);
 
-// Auth rate limiting
+
 const authLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
   max: 5,
@@ -37,20 +37,20 @@ const authLimiter = rateLimit({
 app.use('/api/auth/login', authLimiter);
 app.use('/api/auth/register', authLimiter);
 
-// CORS configuration
+
 app.use(cors({
-  origin: process.env.CLIENT_URL || 'http://localhost:3001',
+  origin: process.env.CLIENT_URL || 'http:
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
 
-// Body parsing middleware
+
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
-// Session configuration
+
 app.use(session({
   secret: process.env.SESSION_SECRET,
   resave: false,
@@ -65,14 +65,14 @@ app.use(session({
   }
 }));
 
-// Passport middleware
+
 app.use(passport.initialize());
 app.use(passport.session());
 
-// Routes
+
 app.use('/api/auth', authRoutes);
 
-// Health check endpoint
+
 app.get('/api/health', (req, res) => {
   res.json({ 
     success: true, 
@@ -81,7 +81,7 @@ app.get('/api/health', (req, res) => {
   });
 });
 
-// Global error handler
+
 app.use((error, req, res, next) => {
   console.error('Global error:', error);
   res.status(500).json({
@@ -91,7 +91,7 @@ app.use((error, req, res, next) => {
   });
 });
 
-// 404 handler - FIXED FOR EXPRESS 5
+
 app.use('/*catchall', (req, res) => {
   res.status(404).json({
     success: false,
