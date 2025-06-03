@@ -1,0 +1,125 @@
+.auth-container {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  width: 100%;
+  max-width: 400px;
+  animation: slideIn 0.5s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.tabs {
+  display: flex;
+  background: #f8f9fa;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.tabs button {
+  flex: 1;
+  padding: 16px 20px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+  color: #6c757d;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.tabs button.active {
+  color: #007bff;
+  background: #fff;
+}
+
+.tabs button.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: #007bff;
+  border-radius: 3px 3px 0 0;
+}
+
+.tabs button:hover:not(.active) {
+  background: #e9ecef;
+  color: #495057;
+}
+
+.social-auth {
+  padding: 20px;
+  border-top: 1px solid #e9ecef;
+  background: #f8f9fa;
+}
+
+.social-auth button {
+  width: 100%;
+  padding: 12px 16px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: white;
+  color: #333;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.social-auth button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.social-auth button:last-child {
+  margin-bottom: 0;
+}
+
+/* Provider-specific styling */
+.google-auth {
+  border-color: #db4437;
+  color: #db4437;
+}
+
+.google-auth:hover {
+  background: #db4437;
+  color: white;
+}
+
+.github-auth {
+  border-color: #333;
+  color: #333;
+}
+
+.github-auth:hover {
+  background: #333;
+  color: white;
+}
+
+.microsoft-auth {
+  border-color: #00a1f1;
+  color: #00a1f1;
+}
+
+.microsoft-auth:hover {
+  background: #00a1f1;
+  color: white;
+}
